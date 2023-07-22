@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TAJMAX Blog</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+  <header>
+    <h1><a href="{% url 'home' %}">TAJMAX Blog</a></h1>
+  </header>
+  {% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }}!</p>
+    <p><a href="{% url 'logout' %}">Log Out</a></p>
+  {% else %}
+    <p>
+        <a href="{% url 'login' %}">LogIn to site>>></a> |
+        <a href="{% url 'signup' %}">SignUp to site>>></a>
+    </p>
+  {% endif %}
+<div>
+  {% block content %}
+    {% endblock content %}
+</div>
+<foot>
+    <h2><a href="{% url 'new_post' %}">Write new post...</a></h2>
+</foot>
+</body>
+</html>
